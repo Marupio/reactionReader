@@ -1,0 +1,49 @@
+variableName
+{
+    type    standard;
+    
+    diffusion
+    upperLimit (default VGREAT)
+    lowerLimit (default 0)
+    convergence
+    atsConvergence
+    changedByUDF (default no)
+}
+
+variableName
+{
+    type    implicit;
+
+    diffusion
+    upperLimit (default VGREAT)
+    lowerLimit (default 0)
+    convergence
+    implicitLoopConvergence
+    atsConvergence
+    autoSolve (default no)
+    autoSolveConvergence (default SMALL)
+    autoSolveMaxIter (default 1000)
+}
+
+variableName
+{
+    type    derived;
+
+    diffusion
+    function
+    ddt
+    Jacobian
+    {
+        variable    "equation";
+        variable    "equation";
+        ...
+    }
+    reverseFunctions
+    {
+        variable    "equation";
+        variable    "equation";
+        ...
+    }
+    suppressOutput (default 'no')
+}
+

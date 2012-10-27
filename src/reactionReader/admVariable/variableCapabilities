@@ -1,0 +1,144 @@
+was rebuilding ADM library
+-admDerivedVariable needs help with its chainRule indices.
+
+put ddy(coefficient) into library
+
+readCoefficient
+
+state control nolonger handles milestones - setMilestone only increments
+cannot return to a previous milestone - do these changes
+
+remove state control from derived variables.
+add coefficient initialization
+
+
+Was working on readScalarOrEquation functions in admTime.
+Was making readEquation return the equation index.
+
+Things I need to do:
+-Fix forAll loops in equationReader
+-Fix any forAll loops elsewhere
+-virtual functions
+
+
+Variable manager capabilities
+-All:
+--output averages
+--averagesDict
+-Standard:
+--changedByUdf
+--unchangedByUdf
+-Implicit:
+--autoSolve
+-Derived:
+--initialize
+--autoUpdate
+--function eqn numbers
+--reverse function eqn numbers
+--chain rule search depth
+
+Variable capabilities
+-All:
+--diffusion coefficient
+-Standard:
+--changedByUdf
+-Implicit:
+--autoSolve
+--autoSolveConvergence
+--autoSolveMaxIter
+-Derived:
+--equationIndex
+--ddtIndex
+--jacobian:
+---dictionary
+---equation indices
+---associated variable
+--chain rule:
+---equation indices
+---associated variable
+--reverse function:
+---equation indices
+---associated variable
+--suppress output
+--autoUpdate
+
+General interface option a:
+-evaluateScalar                 scalar
+-evaluateName                   word
+-evaluateDimensions             dimensionSet
+-evaluateDimensionedScalar      dimensionedScalar
+-evaluateScalarField            scalarField
+-evaluateDimensionedScalarField dimensionedScalarField
+-evaluateNonZero                bool
+
+General interface option b: <<<--- I chose this one
+-evaluate                   scalar
+-evaluateName               word
+-evaluateDims               dimensionSet
+-evaluateDimensioned        dimensionedScalar
+-evaluateField              scalarField
+-evaluateDimensionedField   dimensionedScalarField
+-evaluateNonZero            bool
+
+Variable manager interface
+found
+foundStandard
+foundImplicit
+foundDerived
+lookup
+lookupStandard
+lookupImplicit
+lookupDerived
+
+standard & implicit
+-get value = pull value from array
+-put value = put value into array
+derived
+-get value = evaluate function, return result
+-put value = run reverse functions
+
+
+Convergences:
+-block matrix solver
+-standard (main loop)
+-implicitDdt (main loop)
+-autoSolve
+-adaptive time step
+
+Dictionary entries:
+variableName
+{
+    type            standard;
+    diffusion       dimensionedScalar;
+    convergence     scalar;
+    changedByUDF    bool;
+}
+variableName
+{
+    type                    implicit;
+    diffusion               dimensionedScalar;
+    convergence             scalar;
+    autoSolve               switch; (default false)
+    autoSolveConvergence    scalar; (default same as convergence)
+    autoSolveMaxIter        label; (default 10000)
+}
+variableName
+{
+    type        derived;
+    function    equation;
+    ddt         equation; (optional)
+    ddy (optional)
+    {
+        varName     equation;
+        varName     equation; (optional)
+        ...
+    }
+    reverse (optional)
+    {
+        order       wordList; (optional, but must have every varName if used)
+        varName     equation;
+        varName     equation; (optional)
+        ...
+    }
+}
+

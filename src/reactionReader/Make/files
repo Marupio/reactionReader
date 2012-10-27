@@ -1,0 +1,47 @@
+admTime/admTime.C
+admVariable = admVariable/admVariable
+$(admVariable)/admVariable/admVariable.C
+$(admVariable)/admStandardVariable/admStandardVariable.C
+$(admVariable)/admImplicitVariable/admImplicitVariable.C
+$(admVariable)/admDerivedVariable/admDerivedVariable.C
+admVariable/admVariableManager/admVariableManager.C
+
+admCalculusInterface/admCalculusInterface.C
+
+admCoeffs = admCoefficients/admCoefficient
+$(admCoeffs)/admCoefficient/admCoefficient.C
+$(admCoeffs)/admZeroCoefficient/admZeroCoefficient.C
+$(admCoeffs)/admOneCoefficient/admOneCoefficient.C
+$(admCoeffs)/admConstantCoefficient/admConstantCoefficient.C
+$(admCoeffs)/admTemperatureDependentExponentialRatioCoefficient/admTemperatureDependentExponentialRatioCoefficient.C
+$(admCoeffs)/admCustomCoefficient/admCustomCoefficient.C
+admCoefficients/admCoefficientManager/admCoefficientManager.C
+
+admReactions/admReaction/admReaction.C
+admReactions/admReactionManager/admReactionManager.C
+
+admRateInhib = admReactions/admRateInhibitions
+$(admRateInhib)/admRateInhibition/admRateInhibition.C
+$(admRateInhib)/admNonCompetitiveRateInhibition/admNonCompetitiveRateInhibition.C
+$(admRateInhib)/admEmpiricalUpperAndLowerRateInhibition/admEmpiricalUpperAndLowerRateInhibition.C
+$(admRateInhib)/admEmpiricalLowerSwitchRateInhibition/admEmpiricalLowerSwitchRateInhibition.C
+$(admRateInhib)/admEmpiricalLowerTanhRateInhibition/admEmpiricalLowerTanhRateInhibition.C
+$(admRateInhib)/admEmpiricalLowerHillRateInhibition/admEmpiricalLowerHillRateInhibition.C
+$(admRateInhib)/admCompetitiveUptakeRateInhibition/admCompetitiveUptakeRateInhibition.C
+$(admRateInhib)/admSecondarySubstrateRateInhibition/admSecondarySubstrateRateInhibition.C
+$(admRateInhib)/admCustomRateInhibition/admCustomRateInhibition.C
+
+admReacRates = admReactions/admReactionRate
+$(admReacRates)/admReactionRate/admReactionRate.C
+$(admReacRates)/admNonReactingReactionRate/admNonReactingReactionRate.C
+$(admReacRates)/admFirstOrderReactionRate/admFirstOrderReactionRate.C
+$(admReacRates)/admSimpleGasReactionRate/admSimpleGasReactionRate.C
+$(admReacRates)/admAcidBaseReactionRate/admAcidBaseReactionRate.C
+$(admReacRates)/admMonodReactionRate/admMonodReactionRate.C
+$(admReacRates)/admCompetitiveMonodReactionRate/admCompetitiveMonodReactionRate.C
+$(admReacRates)/admUncompetitiveMonodReactionRate/admUncompetitiveMonodReactionRate.C
+$(admReacRates)/admCustomReactionRate/admCustomReactionRate.C
+
+admReactionReader/admReactionReader/admReactionReader.C
+
+LIB = $(FOAM_USER_LIBBIN)/libreactionReader
