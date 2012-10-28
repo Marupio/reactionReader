@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     // You can search through the variable for one of a specific name:
     if (admVars.found("SH2"))
     {
-        admVariable& tempVar admVars.lookup("SH2");
+        admVariable& tempVar(admVars.lookup("SH2"));
         Info << "Variable SH2 exists, and has dimensions "
             << tempVar.dimensions() << endl;
     }
@@ -170,13 +170,16 @@ int main(int argc, char *argv[])
     }
     
     // With the reaction, you can find out the yields on each variable:
-    Info << "The " << reac0.name() << " reaction yields " << generalVar.name()
-        << " by an amount of " << reac0.yield(generalVar) << endl;
+    Info << "At cell 0, the " << reac0.name() << " reaction yields "
+        << reac0.yield(generalVar).evaluateDimensioned(0) << " to variable "
+        << generalVar.name() << endl;
 
     // The reaction also gives you the reaction rate:
     admReactionRate& reacRate(reac0.rate());
     // which you can evaluate, take the derivative of, and so on.  See the
     // header file of admReactionRate for more details.
+
+    // *** Dealing with coefficients ***
 
     // Finally, the coefficients that you defined in admCoefficientsDict are
     // accessed through the coefficientManager.
@@ -187,7 +190,7 @@ int main(int argc, char *argv[])
     // src/OpenFOAM/containers/HashTables/HashTable/HashTable.H, e.g.:
     if (admCoeffs.found("k0"))
     {
-        admCoefficient& theCoeff(admCoeffs("k0"));
+        const admCoefficient& theCoeff(admCoeffs("k0"));
         Info << "k0 coefficient exists, and at cell 0 its value is "
             << theCoeff.evaluate(0) << endl;
     }

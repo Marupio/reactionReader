@@ -103,6 +103,10 @@ Foam::word Foam::admVariable::varTypeToWord
         case vtnone:
             return "none";
     }
+    FatalErrorIn("admVariable::varTypeToWord")
+        << "Unknown variable type (is " << vtIn << ", should be 0-3)"
+        << abort(FatalError);
+    return "error";
 }
 
 

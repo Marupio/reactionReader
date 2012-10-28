@@ -48,7 +48,6 @@ Author
 #include "admVariableManager.H"
 #include "admCoefficientManager.H"
 #include "admReactionManager.H"
-#include "admFlow.H"
 #include "fvCFD.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

@@ -37,10 +37,12 @@ boundaryField
     }
     north
     {
-        type                dissolvedGasTransfer;
-        inputDictionary     admSimpleGasDict;
-        outputDictionary    gasModel;
-        species             co2;
+        type            zeroGradient;
+        //For full ADM1, this should be:
+        //type                dissolvedGasTransfer;
+        //inputDictionary     admSimpleGasDict;
+        //outputDictionary    gasModel;
+        //species             co2;
     }
     west
     {
