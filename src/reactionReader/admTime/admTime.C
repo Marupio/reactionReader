@@ -311,7 +311,7 @@ void Foam::admTime::halveDeltaT()
 
 void Foam::admTime::setDeltaTCoarse(const scalar deltaT)
 {
-    setDeltaT(deltaT);
+    setDeltaTLimited(deltaT);
     if (writeControl_ == wcAdjustableRunTime)
     {
         scalar timeToNextWrite = max
@@ -340,7 +340,7 @@ void Foam::admTime::setDeltaTCoarse(const scalar deltaT)
 }
 
 
-void Foam::admTime::setDeltaT(const scalar deltaT)
+void Foam::admTime::setDeltaTLimited(const scalar deltaT)
 {
     scalar limitedDeltaT(min(deltaT, maxDeltaT_));
     limitedDeltaT = max(limitedDeltaT, minDeltaT_);
@@ -349,9 +349,23 @@ void Foam::admTime::setDeltaT(const scalar deltaT)
     deltaTchanged_ = true;
     if (debug)
     {
+        Info << "admTime::setDeltaT : requested " << deltaT
+            << ", limited to " << deltaT_ << endl;
+    }
+}
+
+
+void Foam::admTime::setDeltaT(const scalar deltaT)
+{
+    deltaT_ = deltaT;
+    deltaTchanged_ = true;
+    if (debug)
+    {
         Info << "admTime::setDeltaT : Setting delta T to " << deltaT_ << endl;
     }
 }
+
+
 
 
 void Foam::admTime::setTime

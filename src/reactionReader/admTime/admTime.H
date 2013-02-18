@@ -213,6 +213,9 @@ public:
             //- Set the timestep before the coarse step
             void setDeltaTCoarse(const scalar deltaT);
 
+            //- Reset time step, applying endTime and max/min limits
+            void setDeltaTLimited(const scalar);
+            
             //- Reset time step
             virtual void setDeltaT(const scalar);
             
