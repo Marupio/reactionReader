@@ -345,8 +345,16 @@ void Foam::admTime::setDeltaTLimited(const scalar deltaT)
     scalar limitedDeltaT(min(deltaT, maxDeltaT_));
     limitedDeltaT = max(limitedDeltaT, minDeltaT_);
     limitedDeltaT = min(limitedDeltaT, (endTime_ - this->value()) / 2);
-    deltaT_ = limitedDeltaT;
+    if (limitedDeltaT > 0)
+    {
+        deltaT_ = limitedDeltaT;
+    }
+    else
+    {
+        deltaT_ = deltaT;
+    }
     deltaTchanged_ = true;
+
     if (debug)
     {
         Info << "admTime::setDeltaT : requested " << deltaT
