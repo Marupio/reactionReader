@@ -93,15 +93,15 @@ int main(int argc, char *argv[])
         << admVars.tocDerived() << endl;
 
     // You can search through the variable for one of a specific name:
-    if (admVars.found("SH2"))
+    if (admVars.found("S_ic"))
     {
-        admVariable& tempVar(admVars.lookup("SH2"));
-        Info << "Variable SH2 exists, and has dimensions "
+        admVariable& tempVar(admVars.lookup("S_ic"));
+        Info << "Variable S_ic exists, and has dimensions "
             << tempVar.dimensions() << endl;
     }
     else
     {
-        Info << "Variable SH2 doesn't exist." << endl;
+        Info << "Variable S_ic doesn't exist." << endl;
     }
     // but it's much faster to use the indexes, see looping, below.
     //
@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
     forAll(admReacs, reacIndex)
     {
         admReaction& theReaction(admReacs[reacIndex]);
-        Info << "The " << reacIndex << " is " << theReaction.name()
+        Info << "At index " << reacIndex << " it is " << theReaction.name()
             << " and at cell 0 its reaction rate is "
             << theReaction.rate().evaluate(0) << endl;
     }
@@ -188,15 +188,15 @@ int main(int argc, char *argv[])
     // Coefficients are accessed by name.  They are stored in a hash table, so
     // this is fast.  Use any of the search / find functions from
     // src/OpenFOAM/containers/HashTables/HashTable/HashTable.H, e.g.:
-    if (admCoeffs.found("k0"))
+    if (admCoeffs.found("k_a_ac"))
     {
-        const admCoefficient& theCoeff(admCoeffs("k0"));
-        Info << "k0 coefficient exists, and at cell 0 its value is "
+        const admCoefficient& theCoeff(admCoeffs("k_a_ac"));
+        Info << "k_a_ac coefficient exists, and at cell 0 its value is "
             << theCoeff.evaluate(0) << endl;
     }
     else
     {
-        Info << "k0 coefficient does not exist." << endl;
+        Info << "k_a_ac coefficient does not exist." << endl;
     }
     // Have a look at the coefficient header file admCoefficient.H.  Notice
     // it inherits admCalculusInterface.  This class defines most of the
