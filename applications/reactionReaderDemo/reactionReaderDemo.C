@@ -36,6 +36,7 @@ Author
 
 #include "fvCFD.H"
 #include "admReactionReader.H"
+#include "HashTableCore.C"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
